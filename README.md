@@ -1,3 +1,16 @@
+¡Claro! Aquí tienes una descripción concisa para el repositorio de GitHub y un archivo `README.md` completo y bien estructurado para el proyecto.
+
+---
+
+### Descripción para el Repositorio de GitHub
+
+**Herramienta de línea de comandos en Python para cifrado y descifrado AES-128-CBC, compatible con el formato de OpenSSL `enc`.**
+
+---
+
+### Archivo README.md
+
+```markdown
 # xaes.py - Cifrado AES compatible con OpenSSL
 
 `xaes.py` es una sencilla herramienta de línea de comandos escrita en Python 3 para cifrar y descifrar datos utilizando el algoritmo AES. Está diseñada para ser un reemplazo o complemento simple y multiplataforma para el comando `openssl enc`, generando un formato de salida idéntico.
@@ -21,99 +34,78 @@ La herramienta lee datos de la entrada estándar (`stdin`) y escribe el resultad
 Puedes instalar la dependencia necesaria usando pip:
 ```sh
 pip install pycryptodome
-Uso
+```
 
-El script se invoca con dos argumentos: un modo de operación (-e para cifrar o -d para descifrar) y la contraseña.
+## Uso
 
-Cifrar
+El script se invoca con dos argumentos: un modo de operación (`-e` para cifrar o `-d` para descifrar) y la contraseña.
+
+### Cifrar
 
 Para cifrar un archivo, puedes redirigir su contenido a la entrada estándar del script.
 
-code
-Sh
-download
-content_copy
-expand_less
+```sh
 # Cifrar el contenido de 'mi_secreto.txt' y guardarlo en 'mi_secreto.enc'
 cat mi_secreto.txt | ./xaes.py -e "mi_contraseña_segura" > mi_secreto.enc
+```
 
 También puedes cifrar texto directamente:
-
-code
-Sh
-download
-content_copy
-expand_less
+```sh
 echo "Este es un mensaje secreto" | ./xaes.py -e "mi_contraseña_segura" > mensaje.enc
-Descifrar
+```
+
+### Descifrar
 
 Para descifrar, el proceso es el inverso.
 
-code
-Sh
-download
-content_copy
-expand_less
+```sh
 # Descifrar 'mi_secreto.enc' y mostrar el resultado en la terminal
 cat mi_secreto.enc | ./xaes.py -d "mi_contraseña_segura"
 
 # Descifrar 'mi_secreto.enc' y guardarlo en un nuevo archivo
 cat mi_secreto.enc | ./xaes.py -d "mi_contraseña_segura" > mi_secreto_descifrado.txt
-Compatibilidad con OpenSSL
+```
+
+## Compatibilidad con OpenSSL
 
 La principal ventaja de esta herramienta es su interoperabilidad con OpenSSL.
 
-Cifrar con xaes.py y descifrar con openssl
-code
-Sh
-download
-content_copy
-expand_less
+#### Cifrar con `xaes.py` y descifrar con `openssl`
+
+```sh
 # 1. Cifrar con xaes.py
 echo "Hola OpenSSL" | ./xaes.py -e "password123" > hola.enc
 
 # 2. Descifrar el mismo archivo con openssl
 openssl enc -d -aes-128-cbc -in hola.enc -k "password123"
 # Salida esperada: Hola OpenSSL
-Cifrar con openssl y descifrar con xaes.py
-code
-Sh
-download
-content_copy
-expand_less
+```
+
+#### Cifrar con `openssl` y descifrar con `xaes.py`
+
+```sh
 # 1. Cifrar con openssl (asegúrate de usar -salt para que el formato coincida)
 openssl enc -e -aes-128-cbc -salt -in mi_archivo.txt -out mi_archivo.openssl.enc -k "password123"
 
 # 2. Descifrar el archivo generado con xaes.py
 cat mi_archivo.openssl.enc | ./xaes.py -d "password123"
-Detalles Técnicos
+```
+
+## Detalles Técnicos
 
 La implementación sigue las convenciones de OpenSSL para la derivación de claves a partir de contraseñas:
 
-Algoritmo: AES
+-   **Algoritmo:** AES
+-   **Tamaño de clave:** 128 bits (16 bytes)
+-   **Modo de operación:** CBC (Cipher Block Chaining)
+-   **Vector de Inicialización (IV):** 128 bits (16 bytes)
+-   **Relleno (Padding):** PKCS7
+-   **Función de Derivación de Clave (KDF):** PBKDF2
+-   **Hash para KDF:** HMAC-SHA256
+-   **Iteraciones de PBKDF2:** 10,000
+-   **Sal (Salt):** 64 bits (8 bytes), generada aleatoriamente para cada cifrado y prefijada al texto cifrado.
 
-Tamaño de clave: 128 bits (16 bytes)
+## Licencia
 
-Modo de operación: CBC (Cipher Block Chaining)
-
-Vector de Inicialización (IV): 128 bits (16 bytes)
-
-Relleno (Padding): PKCS7
-
-Función de Derivación de Clave (KDF): PBKDF2
-
-Hash para KDF: HMAC-SHA256
-
-Iteraciones de PBKDF2: 10,000
-
-Sal (Salt): 64 bits (8 bytes), generada aleatoriamente para cada cifrado y prefijada al texto cifrado.
-
-Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
-
-code
-Code
-download
-content_copy
-expand_less
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+```
