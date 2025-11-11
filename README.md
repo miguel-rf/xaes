@@ -1,16 +1,3 @@
-¡Claro! Aquí tienes una descripción concisa para el repositorio de GitHub y un archivo `README.md` completo y bien estructurado para el proyecto.
-
----
-
-### Descripción para el Repositorio de GitHub
-
-**Herramienta de línea de comandos en Python para cifrado y descifrado AES-128-CBC, compatible con el formato de OpenSSL `enc`.**
-
----
-
-### Archivo README.md
-
-```markdown
 # xaes.py - Cifrado AES compatible con OpenSSL
 
 `xaes.py` es una sencilla herramienta de línea de comandos escrita en Python 3 para cifrar y descifrar datos utilizando el algoritmo AES. Está diseñada para ser un reemplazo o complemento simple y multiplataforma para el comando `openssl enc`, generando un formato de salida idéntico.
